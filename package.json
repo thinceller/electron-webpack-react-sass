@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
+  "scripts": {
+    "start": "electron ./dist",
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --mode production",
+    "package:mac": "electron-packager ./dist electron-webpack-react-sass --platform=darwin --arch=x64 --out=./build/mac --overwrite --asar",
+    "package:win": "electron-packager ./dist electron-webpack-react-sass --platform=win32 --arch=x64 --out=./build/win --overwrite --asar",
+    "package:linux": "electron-packager ./dist electron-webpack-react-sass --platform=linux --arch=x64 --out=./build/linux --overwrite --asar"
+  },
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
