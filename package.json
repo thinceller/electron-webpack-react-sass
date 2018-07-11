@@ -4,9 +4,6 @@
   "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "package:mac": "electron-packager ./dist electron-webpack-react-sass --platform=darwin --arch=x64 --out=./build/mac --overwrite --asar",
-    "package:win": "electron-packager ./dist electron-webpack-react-sass --platform=win32 --arch=x64 --out=./build/win --overwrite --asar",
-    "package:linux": "electron-packager ./dist electron-webpack-react-sass --platform=linux --arch=x64 --out=./build/linux --overwrite --asar"
     "start": "cross-env NODE_ENV=production electron ./dist",
     "start:dev": "cross-env NODE_ENV=development electron ./dist",
     "watch:main": "cross-env NODE_ENV=development webpack --config webpack.config.main.js --watch --mode development --colors",
@@ -15,6 +12,10 @@
     "build:main": "cross-env NODE_ENV=production webpack --config webpack.config.main.js --mode production --colors",
     "build:renderer": "cross-env NODE_ENV=production webpack --config webpack.config.renderer.js --mode production --colors",
     "build": "rm -rf ./dist/* && npm-run-all -p build:* && cp package.json ./dist",
+    "package:mac": "NODE_ENV=production electron-packager ./dist electron-webpack-react-sass --platform=darwin --arch=x64 --out=./build/mac --overwrite --asar",
+    "package:win": "cross-env NODE_ENV=production electron-packager ./dist electron-webpack-react-sass --platform=win32 --arch=x64 --out=./build/win --overwrite --asar",
+    "package:linux": "cross-env NODE_ENV=production electron-packager ./dist electron-webpack-react-sass --platform=linux --arch=x64 --out=./build/linux --overwrite --asar",
+    "package": "npm-run-all -p package:*"
   },
   "dependencies": {
     "react": "^16.4.1",
