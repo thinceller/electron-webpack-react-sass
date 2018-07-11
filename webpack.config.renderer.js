@@ -4,42 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distDir = path.join(__dirname, 'dist');
 
 module.exports = [
-  // main process bundle
-  {
-    entry: './src/main.js',
-    target: 'electron-main',
-    node: {
-      __dirname: false,
-    },
-    output: {
-      path: distDir,
-      filename: 'main.js',
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  ['env', {'modules': false}],
-                ],
-              },
-            }
-          ]
-        }
-      ],
-    },
-  },
-  // renderer process bundle
   {
     entry: './src/renderer/index.jsx',
     target: 'electron-renderer',
     output: {
-      path: path.join(distDir),
+      path: distDir,
       filename: 'bundle.js',
     },
     module: {
@@ -52,7 +21,7 @@ module.exports = [
               loader: 'babel-loader',
               options: {
                 presets: [
-                  ['env', {'modules': false}],
+                  ['env',{'modules': false}],
                   'react',
                 ],
               },
