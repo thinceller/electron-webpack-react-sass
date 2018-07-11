@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const distDir = path.join(__dirname, 'dist');
 
-  // renderer process bundle
+module.exports = [
   {
     entry: './src/renderer/index.jsx',
     target: 'electron-renderer',
     output: {
-      path: path.join(distDir),
+      path: distDir,
       filename: 'bundle.js',
     },
     module: {
@@ -21,7 +21,7 @@ const distDir = path.join(__dirname, 'dist');
               loader: 'babel-loader',
               options: {
                 presets: [
-                  ['env', {'modules': false}],
+                  ['env',{'modules': false}],
                   'react',
                 ],
               },
